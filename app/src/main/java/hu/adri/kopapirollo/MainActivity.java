@@ -18,7 +18,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     private ImageView user,gep;
-    private TextView userScoreOut,gepScoreOut;
+    private TextView userScoreOut,gepScoreOut,dontetlen;
     private Button koBtn,papirBtn,olloBtn;
     private Random r;
     private int gepValasztott;
@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private int gepScore;
     private AlertDialog alert;
     private AlertDialog.Builder builder;
+    private int dontetlenDb;
 
 
     @Override
@@ -78,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
         this.gepValasztott=r.nextInt(2)+1;
         this.userScore=0;
         this.gepScore=0;
+        dontetlen=findViewById(R.id.dontetlenDb);
+        dontetlenDb=0;
         builder = new AlertDialog.Builder(MainActivity.this);
         builder.setMessage("Szeretnél új játékot?")
                 .setPositiveButton("Igen", new DialogInterface.OnClickListener() {
@@ -86,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
                         gepValasztott=r.nextInt(2)+1;
                         userScore=0;
                         gepScore=0;
+                        dontetlenDb=0;
+                        dontetlen.setText("0");
                         user.setImageResource(R.drawable.rock);
                         gep.setImageResource(R.drawable.rock);
                         userScoreOut.setText("0");
@@ -120,6 +125,9 @@ public class MainActivity extends AppCompatActivity {
             if(gepValasztott==1)
             {
                 Toast.makeText(this, "Döntetlen!", Toast.LENGTH_LONG).show();
+                dontetlenDb++;
+                dontetlen.setText(dontetlenDb+"");
+
             }
             else if(gepValasztott==2)
             {
@@ -153,6 +161,8 @@ public class MainActivity extends AppCompatActivity {
             else if(gepValasztott==2)
             {
                 Toast.makeText(this, "Döntetlen!", Toast.LENGTH_LONG).show();
+                dontetlenDb++;
+                dontetlen.setText(dontetlenDb+"");
             }
             else{
                 Toast.makeText(this, "A gép nyert!", Toast.LENGTH_LONG).show();
@@ -186,6 +196,8 @@ public class MainActivity extends AppCompatActivity {
             }
             else{
                 Toast.makeText(this, "Döntetlen!", Toast.LENGTH_LONG).show();
+                dontetlenDb++;
+                dontetlen.setText(dontetlenDb+"");
             }
         }
         gepValasztott=r.nextInt(2)+1;
